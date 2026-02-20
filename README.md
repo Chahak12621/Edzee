@@ -2,9 +2,9 @@
 
 ## 📌 Overview
 
-Edzee is a comprehensive **AI-powered learning platform** built with Next.js, React, Express, MongoDB, and Google Genkit. It provides intelligent quiz generation, personalized learning paths, subject-specific chatbots, and full offline support.
+Edzee is a comprehensive **AI-powered learning platform** built with Next.js, React, Express, MongoDB, and Groq API. It provides intelligent quiz generation, personalized learning paths, subject-specific chatbots, and comprehension practise.
 
-**Key Tagline:** *"Learn Smarter, Not Harder - With AI-Powered Learning Paths & Offline Support"*
+**Key Tagline:** *"Learn Smarter, Not Harder - With AI-Powered Learning Paths"*
 
 ---
 
@@ -25,7 +25,7 @@ Edzee is a comprehensive **AI-powered learning platform** built with Next.js, Re
 - **Local Storage** - IndexedDB for persistent data
 
 ### 🌐 Technical Features
-- **Real-time AI** - Powered by Google Gemini API via Genkit
+- **Real-time AI** - Powered by Groq API
 - **Secure Authentication** - JWT-based login/signup
 - **Database** - MongoDB for persistent storage
 - **Offline-First** - IndexedDB + Request queuing + Auto-sync
@@ -152,7 +152,7 @@ Open `http://localhost:3000` and sign up!
 
 ```bash
 # 1. Install
-npm install @genkit-ai/ai @genkit-ai/googleai multer pdf-parse
+npm install groq-sdk
 
 # 2. Setup .env with Google API key
 
