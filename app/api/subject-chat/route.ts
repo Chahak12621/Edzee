@@ -6,12 +6,14 @@ const groq = new Groq({
 });
 
 const SYSTEM_PROMPT = `
-You are Chatbot tutor of the subject whihc is given and you have to solve queries about that particular subject.
+You are a chatbot tutor. Answer only questions related to the given subject.
 `;
 
 export async function POST(req: NextRequest) {
   try {
-    const { messages } = await req.json();
+    const body = await req.json();
+
+    const messages = Array.isArray(body?.messages) ? body.messages : [];
 
     const groqMessages = [
       { role: "system", content: SYSTEM_PROMPT },
@@ -22,18 +24,18 @@ export async function POST(req: NextRequest) {
     ];
 
     const completion = await groq.chat.completions.create({
-       model: "llama-3.1-8b-instant",
+      model: "llama-3.1-8b-instant",
       messages: groqMessages,
       temperature: 0.6,
     });
 
     return NextResponse.json({
-      reply: completion.choices[0].message.content,
+      reply: completion.choices?.[0]?.message?.content ?? "No response",
     });
   } catch (err) {
-    console.error(err);
+    console.error("Groq API error:", err);
     return NextResponse.json(
-      { reply: "Namaste 🙏 Thoda traffic hai, please try again!" },
+      { reply: "Namaste 🙏 Server thoda busy hai, please try again." },
       { status: 500 }
     );
   }
