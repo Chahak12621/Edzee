@@ -21,14 +21,11 @@ Edzee is a comprehensive **AI-powered learning platform** built with Next.js, Re
 - **Beautiful Dashboard** - Modern, responsive design
 - **Progress Tracking** - Monitor learning journey
 - **Social Learning** - Community feed and shared quizzes
-- **Offline Mode** - Work offline, auto-sync when online
-- **Local Storage** - IndexedDB for persistent data
 
 ### 🌐 Technical Features
 - **Real-time AI** - Powered by Groq API
 - **Secure Authentication** - JWT-based login/signup
 - **Database** - MongoDB for persistent storage
-- **Offline-First** - IndexedDB + Request queuing + Auto-sync
 - **Scalable** - Production-ready architecture
 
 ---
@@ -39,13 +36,13 @@ Edzee is a comprehensive **AI-powered learning platform** built with Next.js, Re
 ```bash
 cd d:\edzee
 npm install
-npm install @genkit-ai/ai @genkit-ai/googleai multer pdf-parse
+npm install groq-sdk multer pdf-parse
 ```
 
 ### 2️⃣ Environment Setup
 ```bash
 # Create .env file with:
-GOOGLE_API_KEY=your_gemini_api_key
+GROQ_API_KEY=your_groq_api_key
 MONGODB_URI=your_mongodb_uri
 JWT_SECRET=your_secret_key
 PORT=5000
@@ -77,13 +74,12 @@ Open `http://localhost:3000` and sign up!
 │  └──────────────┘  └──────────────┘  └──────────────┘      │
 └────────────────────────┬─────────────────────────────────────┘
                          │
-         ┌───────────────┴───────────────┐
-         │                               │
-    ┌────▼─────┐              ┌────────▼────────┐
-    │ API Client│              │  Offline Mode   │
-    │(Online)   │              │  - IndexedDB    │
-    │           │              │  - Sync Queue   │
-    └────┬─────┘              └────────┬────────┘
+         ┌───────────────┴─┐
+        │         API Client│              
+    ┌────▼─────┐              
+    │(Online)   │              
+    │           │              
+    └────┬─────┘              
          │                              │
     ┌────▼──────────────────────────────▼────┐
     │     EXPRESS SERVER (Backend)           │
@@ -93,7 +89,7 @@ Open `http://localhost:3000` and sign up!
     └────┬─────────────────────────┬────────┘
          │                         │
     ┌────▼──────┐      ┌──────────▼──────┐
-    │  MongoDB   │      │ Genkit + Gemini │
+    │  MongoDB   │      │ Genkit + Groq │
     │  Database  │      │    AI Models    │
     └────────────┘      └─────────────────┘
 ```
@@ -113,38 +109,26 @@ Open `http://localhost:3000` and sign up!
 - Topics selector (7 subjects)
 - Subject Chatbots (Math, Science, History, Language)
 - Progress tracking cards
-- Offline mode indicator
+
 
 ✅ **AI Quiz Generator** (`/quiz/generate`)
 - Upload text/PDF files
 - Paste content directly
 - Set difficulty & question count
 - AI generates quizzes using Genkit
-- Works offline (queues generation)
+
 
 ✅ **Subject Chatbots** (`/community/chat`)
 - Math Bot, Science Bot, History Bot, Language Bot
 - Real-time conversation with AI
 - Examples & follow-up questions
-- Works offline (messages stored locally)
 
-✅ **Offline Mode**
-- Automatic online/offline detection
-- Local data storage (IndexedDB)
-- Request queuing
-- Auto-sync when online
-- Status indicator in UI
+
 
 ---
 
 ## 📚 Documentation
-
-| Document | Purpose |
-|----------|---------|
-| [QUICK_START.md](./QUICK_START.md) | 5-minute setup |
-| [SETUP_GUIDE.md](./SETUP_GUIDE.md) | Detailed setup & APIs |
-| [OFFLINE_MODE_GUIDE.md](./OFFLINE_MODE_GUIDE.md) | Offline architecture |
-| [DEPENDENCIES.md](./DEPENDENCIES.md) | Package management |
+Readme.md
 
 ---
 
