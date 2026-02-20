@@ -43,7 +43,7 @@ export default function ChatPage() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/subject-chat", {
+      const response = await fetch("/api/subject-chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ subject, message: input })
